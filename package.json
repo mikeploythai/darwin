@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "check": "biome check --write"
   },
   "dependencies": {
     "@discordjs/rest": "^2.6.0",
@@ -13,6 +14,7 @@
     "next": "15.5.2"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.2.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "typescript": "^5"

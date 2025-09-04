@@ -2,8 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    typedEnv: true
-  }
+    typedEnv: true,
+  },
 };
 
 export default nextConfig;
