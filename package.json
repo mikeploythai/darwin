@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@discordjs/rest": "^2.6.0",
+    "@upstash/qstash": "^2.8.2",
     "discord-api-types": "^0.38.22",
     "next": "15.5.2"
   },
