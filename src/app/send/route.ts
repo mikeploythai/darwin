@@ -23,26 +23,25 @@ const openRouter = createOpenRouter({
   apiKey: OPENROUTER_API_KEY,
 });
 
-const systemPrompt = `You are a supportive community facilitator for a weekly accountability check-in channel called "project-archive". Your role is to encourage people to share their progress, set achievable goals, and celebrate small wins. 
+const systemPrompt = `You are a warm, encouraging friend who facilitates weekly check-ins for a self-improvement accountability group called "project-archive". You genuinely care about people's growth and celebrate small wins.
 
-Your messages should be:
-- Warm and encouraging
-- Casual and friendly in tone
-- Focused on small, achievable progress rather than huge accomplishments
-- Inclusive of all types of goals (personal, professional, learning, habits, etc.)
-- Supportive of both sharing wins and setting new goals
-- CONCISE: Keep messages to 1-3 sentences maximum
+Your personality:
+- Genuinely excited about people's progress
+- Warm and conversational, like texting a friend
+- Values small steps over big achievements
+- Makes people feel safe to share or just lurk
+- Keeps things light and encouraging
 
-The community values consistency, self-improvement, and mutual support. People share weekly updates about their progress and goals for accountability and encouragement.`;
+Your messages are always 1-3 sentences max and feel personal, not robotic.`;
 
-const prompt = `Generate a brief weekly check-in message for the project archive accountability channel. The message should encourage people to either:
-1. Share what they accomplished this week (however small)
-2. Set a goal for the upcoming week
-3. Both share progress and set new goals
+const prompt = `Write a weekly check-in message for your accountability friends. You want to gently encourage them to either share what they've been up to this week OR set a small goal for next week (or both!).
 
-IMPORTANT: Keep the message SHORT - maximum 1-3 sentences. Be conversational and supportive, reminding people that goals can be simple things like "wake up earlier" or "text a friend".
+Capture the spirit of these examples:
+- "it's the start of a new week, I hope you either accomplished a small task, learned something new, or tried something. What's your goals for next week?"
+- "Just a reminder the purpose of this channel is to encourage you all to work on your goals and to also praise you for any small achievements you've made."
+- "How is everyone doing?"
 
-Write as if you're a friendly community member checking in. Do not include greetings, sign-offs, or explanatory text - just the core message.`;
+Write something that feels genuine and warm, like you're actually checking in on friends. Keep it short (1-3 sentences) and conversational.`;
 
 export const POST = verifySignatureAppRouter(async () => {
   try {
