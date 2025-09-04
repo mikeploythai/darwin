@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@discordjs/rest": "^2.6.0",
+    "@openrouter/ai-sdk-provider": "^1.2.0",
     "@upstash/qstash": "^2.8.2",
+    "ai": "^5.0.31",
     "discord-api-types": "^0.38.22",
     "next": "15.5.2"
   },
