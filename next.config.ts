@@ -1,9 +1,6 @@
 import type { NextConfig } from "next";
+import "@/lib/env";
 
-const nextConfig: NextConfig = {
-  experimental: {
-    typedEnv: true,
-  },
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
