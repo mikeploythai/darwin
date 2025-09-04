@@ -49,7 +49,7 @@ export const POST = verifySignatureAppRouter(async () => {
       model: openRouter.chat("meta-llama/llama-3.3-8b-instruct:free"),
       system: systemPrompt,
       prompt,
-      maxOutputTokens: 150,
+      maxOutputTokens: 250,
     });
 
     await rest.post(Routes.channelMessages(CHANNEL_ID), {
