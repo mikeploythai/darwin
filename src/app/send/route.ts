@@ -1,28 +1,18 @@
-import { DiscordAPIError, REST } from "@discordjs/rest";
-import { createOpenRouter } from "@openrouter/ai-sdk-provider";
+import { DiscordAPIError } from "@discordjs/rest";
 import { verifySignatureAppRouter } from "@upstash/qstash/dist/nextjs";
-import { APICallError, generateText } from "ai";
+import { APICallError } from "ai";
 import { Routes } from "discord-api-types/v10";
 import { NextResponse } from "next/server";
+import { discord } from "@/lib/discord";
 import env from "@/lib/env";
-import { prompt, systemPrompt } from "@/lib/prompts";
-
-const rest = new REST({ version: "10" }).setToken(env.BOT_TOKEN);
-
-const openRouter = createOpenRouter({
-  apiKey: env.OPENROUTER_API_KEY,
-});
+import { weeklyPrompt } from "@/lib/prompts";
+import { generateResponse } from "@/lib/utils";
 
 export const POST = verifySignatureAppRouter(async () => {
   try {
-    const { text: content } = await generateText({
-      model: openRouter.chat("meta-llama/llama-3.3-8b-instruct:free"),
-      system: systemPrompt,
-      prompt,
-      maxOutputTokens: 250,
-    });
+    const { text: content } = await generateResponse(weeklyPrompt);
 
-    await rest.post(Routes.channelMessages(env.CHANNEL_ID), {
+    await discord.post(Routes.channelMessages(env.CHANNEL_ID), {
       body: {
         content: `<@&${env.ROLE_ID}> ${content}`,
       },
@@ -32,7 +22,7 @@ export const POST = verifySignatureAppRouter(async () => {
   } catch (error) {
     console.error(error);
 
-    let status = 400;
+    let status = 500;
     if (error instanceof DiscordAPIError) {
       status = error.status;
     } else if (APICallError.isInstance(error) && error.statusCode) {
