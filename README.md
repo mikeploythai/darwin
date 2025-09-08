@@ -1,6 +1,6 @@
 # Darwin
 
-Darwin is a Discord bot for self-improvement accountability. It is used in my friend group's Discord server in a channel dedicated towards encouraging each other to be 1% better everyday. Darwin sends weekly reminders for us to send progress updates to each other, helps us set goals and celebrate small wins, and replies to people with helpful advice in a warm, friendly tone!
+Darwin is an AI-powered Discord bot for self-improvement accountability. It is used in my friend group's Discord server in a channel dedicated towards encouraging each other to be 1% better everyday. Darwin sends weekly reminders for us to send progress updates to each other, helps us set goals and celebrate small wins, and replies to people with helpful advice in a warm, friendly tone!
 
 ## To do
 
