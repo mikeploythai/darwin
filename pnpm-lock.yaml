@@ -22,7 +22,7 @@ importers:
         version: 2.6.0
       '@openrouter/ai-sdk-provider':
         specifier: ^1.2.0
-        version: 1.2.0(ai@5.0.35(zod@4.1.5))(zod@4.1.5)
+        version: 1.2.0(ai@5.0.37(zod@4.1.5))(zod@4.1.5)
       '@t3-oss/env-nextjs':
         specifier: ^0.13.8
         version: 0.13.8(typescript@5.9.2)(zod@4.1.5)
@@ -33,8 +33,8 @@ importers:
         specifier: ^1.35.3
         version: 1.35.3
       ai:
-        specifier: ^5.0.35
-        version: 5.0.35(zod@4.1.5)
+        specifier: ^5.0.37
+        version: 5.0.37(zod@4.1.5)
       dayjs:
         specifier: ^1.11.18
         version: 1.11.18
@@ -427,8 +427,8 @@ packages:
     resolution: {integrity: sha512-RaI5qZo6D2CVS6sTHFKg1v5Ohq/+Bo2LZ5gzUEwZ/WkHhwtGTCB/sVLw8ijOkAUxasZ+WshN/Rzj4ywsABJ5ZA==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
 
-  ai@5.0.35:
-    resolution: {integrity: sha512-cXk+jk3MkK1iX0A+EoTQGpwcL8zuNNxFO5SIqOI5DwtR5Dn5h942U97zETvG1eNh75hfoJJ9UOJAm5a2nvs+7Q==}
+  ai@5.0.37:
+    resolution: {integrity: sha512-6QJEoLvynMBdk+vC/HT3Ry4w9DjhTKlC2PU+XZU/5z5QPGkGVloby7LJtzNYDOA41OltH+JOohSYqg/9phFwqg==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4
@@ -832,9 +832,9 @@ snapshots:
   '@next/swc-win32-x64-msvc@15.5.2':
     optional: true
 
-  '@openrouter/ai-sdk-provider@1.2.0(ai@5.0.35(zod@4.1.5))(zod@4.1.5)':
+  '@openrouter/ai-sdk-provider@1.2.0(ai@5.0.37(zod@4.1.5))(zod@4.1.5)':
     dependencies:
-      ai: 5.0.35(zod@4.1.5)
+      ai: 5.0.37(zod@4.1.5)
       zod: 4.1.5
 
   '@opentelemetry/api@1.9.0': {}
@@ -885,7 +885,7 @@ snapshots:
 
   '@vladfrangu/async_event_emitter@2.4.6': {}
 
-  ai@5.0.35(zod@4.1.5):
+  ai@5.0.37(zod@4.1.5):
     dependencies:
       '@ai-sdk/gateway': 1.0.19(zod@4.1.5)
       '@ai-sdk/provider': 2.0.0

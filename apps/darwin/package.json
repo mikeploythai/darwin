@@ -12,7 +12,7 @@
     "@t3-oss/env-nextjs": "^0.13.8",
     "@upstash/qstash": "^2.8.2",
     "@upstash/redis": "^1.35.3",
-    "ai": "^5.0.35",
+    "ai": "^5.0.37",
     "dayjs": "^1.11.18",
     "discord-api-types": "^0.38.23",
     "next": "15.5.2",
