@@ -2,7 +2,7 @@ name: Build and Push Gumball Docker Image
 
 on:
   push:
-    branches: [feat/docker]
+    branches: [main, feat/docker]
     paths:
       - 'apps/gumball/**'
       - '.github/workflows/build-gumball-image.yml'
