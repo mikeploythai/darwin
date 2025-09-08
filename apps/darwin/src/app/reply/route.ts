@@ -17,13 +17,13 @@ type GumballData = {
   close: boolean;
 };
 
-export const POST = async (response: Response) => {
-  const auth = response.headers.get("X-Darwin-Secret");
+export const POST = async (request: Request) => {
+  const auth = request.headers.get("X-Darwin-Secret");
   if (auth !== env.DARWIN_SECRET) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const gumball: GumballData = await response.json();
+  const gumball: GumballData = await request.json();
 
   try {
     await discord.post(Routes.channelTyping(env.CHANNEL_ID), {});
