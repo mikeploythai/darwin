@@ -11,14 +11,35 @@ Gumball is a web service used by Darwin. It is a long-running Node.js applicatio
 
 ## Deployment
 
-1. In `darwin/apps/gumball`, rename `.env.example` to `.env.local` and enter the missing secrets.
+### Using pre-built image
 
-2. In `darwin/`, run the following Docker Compose scripts to deploy the service.
+Docker Images are automatically built and pushed when code is merged to `feat/docker` or when releases are created.
 
-  ```sh
-  docker compose up -d
-  docker compose logs -f gumball
-  ```
+1. **Set up environment variables**:
+   - In `darwin/apps/gumball`, copy `.env.example` to `.env.local` 
+   - Fill in the missing secrets in `.env.local`
+   - The `.env.local` file is already ignored by Git. DO NOT COMMIT IT.
+
+2. **Run with Docker Compose**:
+   ```sh
+   # In the darwin/ directory
+   docker compose -f docker-compose.prod.yml up -d
+   docker compose -f docker-compose.prod.yml logs -f gumball
+   ```
+
+3. **Update to latest version**:
+   ```sh
+   docker compose -f docker-compose.prod.yml pull gumball
+   docker compose -f docker-compose.prod.yml up -d gumball
+   ```
+
+### Building from source
+
+```sh
+# In the darwin/ root directory  
+docker compose up -d
+docker compose logs -f gumball
+```
 
 ## To Do
 
