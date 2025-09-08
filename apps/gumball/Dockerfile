@@ -7,18 +7,21 @@ WORKDIR /app
 # Enable pnpm via corepack
 RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
 
-# Copy lockfile and package manifest for better layer caching
+# Copy workspace files for better layer caching
 COPY pnpm-lock.yaml ./
-COPY apps/gumball/package.json ./
+COPY pnpm-workspace.yaml ./
+COPY package.json ./
+COPY apps/gumball/package.json ./apps/gumball/
 
 # Install deps (includes dev deps for building)
 RUN pnpm install --frozen-lockfile
 
 # Copy source and tsconfigs
-COPY apps/gumball/tsconfig*.json ./
-COPY apps/gumball/src ./src
+COPY apps/gumball/tsconfig*.json ./apps/gumball/
+COPY apps/gumball/src ./apps/gumball/src
 
 # Build to build/ using tsconfig.build.json
+WORKDIR /app/apps/gumball
 RUN pnpm run build
 
 # Production runtime
@@ -29,15 +32,18 @@ ENV NODE_ENV=production
 # Enable pnpm
 RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
 
-# Copy only what is needed at runtime
+# Copy workspace files
 COPY pnpm-lock.yaml ./
-COPY apps/gumball/package.json ./
+COPY pnpm-workspace.yaml ./
+COPY package.json ./
+COPY apps/gumball/package.json ./apps/gumball/
 
 # Install production dependencies only
 RUN pnpm install --frozen-lockfile --prod
 
 # Copy compiled output from builder
-COPY --from=builder /app/build ./build
+COPY --from=builder /app/apps/gumball/build ./apps/gumball/build
 
 # Run the compiled JS
+WORKDIR /app/apps/gumball
 CMD ["node", "build/index.js"]
