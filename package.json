@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "turbo dev",
-    "build": "turbo build",
+    "build": "turbo build --env-mode=loose",
     "check": "biome check --write"
   },
   "devDependencies": {
