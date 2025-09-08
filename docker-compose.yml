@@ -1,0 +1,8 @@
+services:
+  gumball:
+    build:
+      context: .
+      dockerfile: apps/gumball/dockerfile
+    env_file:
+      - apps/gumball/.env.local
+    restart: unless-stopped
