@@ -10,8 +10,12 @@ const env = createEnv({
     QSTASH_TOKEN: z.string().min(1),
     QSTASH_CURRENT_SIGNING_KEY: z.string().min(1),
     QSTASH_NEXT_SIGNING_KEY: z.string().min(1),
+    UPSTASH_REDIS_REST_URL: z.url(),
+    UPSTASH_REDIS_REST_TOKEN: z.string(),
+    DARWIN_SECRET: z.string(),
   },
   experimental__runtimeEnv: {},
+  emptyStringAsUndefined: true,
 });
 
 export default env;

@@ -1,22 +1,34 @@
 import { DiscordAPIError } from "@discordjs/rest";
 import { verifySignatureAppRouter } from "@upstash/qstash/dist/nextjs";
 import { APICallError } from "ai";
-import { Routes } from "discord-api-types/v10";
+import {
+  type APIMessage,
+  type RESTPostAPIChannelMessageJSONBody,
+  Routes,
+} from "discord-api-types/v10";
 import { NextResponse } from "next/server";
 import { discord } from "@/lib/discord";
 import env from "@/lib/env";
 import { weeklyPrompt } from "@/lib/prompts";
-import { generateResponse } from "@/lib/utils";
+import redis from "@/lib/redis";
+import { generateResponse, setRedisExpiration } from "@/lib/utils";
 
 export const POST = verifySignatureAppRouter(async () => {
   try {
+    await discord.post(Routes.channelTyping(env.CHANNEL_ID), {});
+
     const { text: content } = await generateResponse(weeklyPrompt);
 
-    await discord.post(Routes.channelMessages(env.CHANNEL_ID), {
-      body: {
-        content: `<@&${env.ROLE_ID}> ${content}`,
+    const message = (await discord.post(
+      Routes.channelMessages(env.CHANNEL_ID),
+      {
+        body: {
+          content: `<@&${env.ROLE_ID}> ${content}`,
+        } satisfies RESTPostAPIChannelMessageJSONBody,
       },
-    });
+    )) as APIMessage;
+
+    await redis.set("weekly:current", message.id, { ex: setRedisExpiration() });
 
     return new Response("Message sent!");
   } catch (error) {
