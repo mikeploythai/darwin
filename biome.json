@@ -27,8 +27,7 @@
       }
     },
     "domains": {
-      "next": "recommended",
-      "react": "recommended"
+      "next": "recommended"
     }
   },
   "assist": {
