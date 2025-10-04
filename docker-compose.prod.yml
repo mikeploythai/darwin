@@ -1,0 +1,7 @@
+services:
+  gumball:
+    image: ghcr.io/mikeploythai/darwin/gumball:latest
+    env_file:
+      - apps/gumball/.env.local
+    restart: unless-stopped
+    pull_policy: always
